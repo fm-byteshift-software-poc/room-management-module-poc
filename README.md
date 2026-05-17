@@ -12,6 +12,24 @@ Completion criteria:
 - The `reservations` table exists with full schema (`id`, `guest_name`, `check_in`, `check_out`, `room_id`)
 - The `Reservation` model contains the exact comment: `# Reservation logic is not implemented. This table exists so Room.current_reservation_id has a valid foreign key target when booking endpoints are added in a future phase.`
 
+## Live Demo
+
+This PoC is publicly accessible for validation and stakeholder review:
+
+- **Frontend (Vercel):** https://room-management-module-poc.vercel.app/
+- **Backend API (Render):** https://room-management-module-poc.onrender.com/
+- **API Documentation (Swagger):** https://room-management-module-poc.onrender.com/docs
+
+### Free Tier Notice
+
+Both deployments use free-tier infrastructure. Please note:
+
+1. **Cold starts**: If the backend has not received traffic in the last 15 minutes, Render may put the service to sleep. The first request can take 30–60 seconds to "wake up" the instance. This is expected behavior and does not indicate an error.
+
+2. **Frontend latency**: Vercel's free tier may also experience brief initialization delays on first load after periods of inactivity.
+
+3. **Rate limits**: Free tiers have request quotas. If you encounter `429 Too Many Requests`, wait a few minutes before retrying.
+
 ## Tech Stack
 
 Backend: Python 3.11+, FastAPI 0.111, SQLAlchemy 2.0, Pydantic 2.7+, SQLite
