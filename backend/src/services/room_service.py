@@ -18,13 +18,13 @@ def get_room_by_id(db: Session, room_id: int) -> Room:
     return room
 
 def create_room(db: Session, room_data: RoomCreate) -> Room:
-    """Creates a new room."""
+    """Creates a new room and returns it with relationships loaded."""
     db_room = Room(**room_data.model_dump())
     db.add(db_room)
     try:
         db.commit()
-        db.refresh(db_room)
-        return db_room
+        # Re-fetch with joinedload to ensure room_type is populated for the response
+        return get_room_by_id(db, db_room.id)
     except exc.IntegrityError:
         db.rollback()
         raise HTTPException(status_code=400, detail="Room number already exists")

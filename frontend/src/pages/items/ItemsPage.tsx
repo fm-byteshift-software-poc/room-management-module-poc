@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useItems } from "@/hooks/useItems";
-import type { Item, ItemCreate } from "@/types/item";
+import type { Item, ItemCreate } from "@/types";
 import { formatCurrency } from "@/utils/format";
 
 const EMPTY_FORM: ItemCreate = { name: "", description: "", price: 0 };
